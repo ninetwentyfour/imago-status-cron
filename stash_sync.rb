@@ -57,8 +57,8 @@ pingdom.checks.each do |check|
 
   puts "Check: #{check.name} => #{check.status} [#{service}]"
   
-  # Find outages in the last 24 hrs
-  yesterday = Time.now - 1.day
+  # Find outages in the last 6 hrs
+  yesterday = Time.now - 6.hours
   recent_outages = check.summary.outages.select do |outage|
     Time.at(outage.timefrom.to_i).to_datetime > yesterday || Time.at(outage.timeto.to_i).to_datetime > yesterday
   end
@@ -73,7 +73,7 @@ pingdom.checks.each do |check|
     # Only update status if status is not custom
     if current["message"] =~ /(Service .* unavailable)|(Service operational but has experienced outage)|(Service operating normally)/i
       puts "Service experienced outages in past 24 hours: #{service}"
-      stashboard.create_event(service, "warning", "Service operational but has experienced outage(s) in past 24 hours.")
+      stashboard.create_event(service, "warning", "Service operational but has experienced outage(s) in past 6 hours.")
     end
   else
     # Service is Up!
