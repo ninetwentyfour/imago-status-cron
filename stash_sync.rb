@@ -70,7 +70,7 @@ pingdom.checks.each do |check|
   elsif !recent_outages.empty?
     # Service has been down in last 24 hrs
     current = stashboard.current_event(service)
-    # Only update status if status is not custom or self was last status
+    # Only update status if status is not custom or self was not last status
     if current["message"] =~ /(Service .* unavailable)|(Service operating normally)/i
       puts "Service experienced outages in past 24 hours: #{service}"
       stashboard.create_event(service, "warning", "Service operational but has experienced outage(s) in past 6 hours.")
@@ -78,7 +78,7 @@ pingdom.checks.each do |check|
   else
     # Service is Up!
     current = stashboard.current_event(service)
-    # Only update status if status is not custom or self was last status
+    # Only update status if status is not custom or self was not last status
     if current["message"] =~ /(Service .* unavailable)|(Service operational but has experienced outage)/i
       puts "Service now operating normally: #{service}"
       stashboard.create_event(service, "up", "Service operating normally.")
