@@ -1,6 +1,8 @@
 Imago Status Cron
 ====
 
+[![Dependency Status](https://gemnasium.com/ninetwentyfour/imago-status-cron.png)](https://gemnasium.com/ninetwentyfour/imago-status-cron)
+
 Simple ruby script that syncs pingdom with stashboard. Ran as a cron job on heroku. Used for [status.imago.in](http://status.imago.in).
 
 Based on the awesome script from [http://dev.bizo.com/2011/05/synchronizing-stashboard-with-pingdom.html](http://dev.bizo.com/2011/05/synchronizing-stashboard-with-pingdom.html)
